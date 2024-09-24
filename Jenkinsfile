@@ -30,7 +30,7 @@ pipeline {
             {
                 script {
                     withSonarQubeEnv('Sonar') {
-                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=main"
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }

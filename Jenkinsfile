@@ -22,7 +22,11 @@ pipeline {
         
         stage('Code Quality Check') {
             steps {
-                sh ' pylint app.py'
+                sh '''
+                    #!/bin/bash
+                    export PATH=$PATH:/Users/macbook/Library/Python/3.9/bin
+                    pyflint your_script.py
+                    '''
             }
         }
         

@@ -17,10 +17,7 @@ pipeline {
         stage('Setup Python Environment') {
             steps {
                 sh '''
-                    apt-get update
-                    apt-get install -y docker.io
-                    systemctl start docker
-                    systemctl enable docker
+                    
                     
                     python3 -m venv ${VENV_DIR}
                     source ${VENV_DIR}/bin/activate

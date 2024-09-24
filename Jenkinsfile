@@ -25,7 +25,7 @@ pipeline {
                 sh '''
                     #!/bin/bash
                     export PATH=$PATH:/Users/macbook/Library/Python/3.9/bin
-                    pyflint your_script.py
+                    pyflint app.py
                     '''
             }
         }

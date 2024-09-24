@@ -8,17 +8,7 @@ pipeline {
             }
         }
         
-        stage('Setup Python Environment') {
-            steps {
-               
-            }
-        }
         
-        stage('Build') {
-            steps {
-            
-            }
-        }
         
         stage('Run Tests') {
             steps {

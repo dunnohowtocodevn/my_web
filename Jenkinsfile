@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh 'python3 -m venv venv'
                 sh '. venv/bin/activate'
-                sh 'pip install flask pytest pylint'
+                sh 'pip3 install flask pytest pylint'
             }
         }
         

@@ -13,14 +13,21 @@ pipeline {
             }
         }
         
-        // Set up Python virtual environment and install dependencies
+        // Install python3-venv and set up Python virtual environment
         stage('Setup Python Environment') {
             steps {
                 sh '''
-                    python3 -m venv ${VENV_DIR}  # Create virtual environment
-                    source ${VENV_DIR}/bin/activate  # Activate the virtual environment
-                    pip install --upgrade pip  # Upgrade pip
-                    pip install flask pytest pylint  # Install required dependencies
+                    # Ensure that python3-venv is installed on Debian/Ubuntu
+                    if ! dpkg -l | grep -qw python3-venv; then
+                        sudo apt-get update
+                        sudo apt-get install -y python3-venv
+                    fi
+
+                    # Create and activate the virtual environment
+                    python3 -m venv ${VENV_DIR}
+                    source ${VENV_DIR}/bin/activate
+                    pip install --upgrade pip
+                    pip install flask pytest pylint
                 '''
             }
         }

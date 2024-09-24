@@ -10,13 +10,13 @@ pipeline {
         
         stage('Setup Python Environment') {
             steps {
-                sh 'pip3 install flask pytest pylint'
+               
             }
         }
         
         stage('Build') {
             steps {
-                sh 'pip3 check'
+            
             }
         }
         

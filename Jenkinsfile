@@ -10,8 +10,6 @@ pipeline {
         
         stage('Setup Python Environment') {
             steps {
-                sh 'python3 -m venv venv'
-            
                 sh 'pip3 install flask pytest pylint'
             }
         }

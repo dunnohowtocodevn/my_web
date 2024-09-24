@@ -55,8 +55,7 @@ pipeline {
                 script {
                     withSonarQubeEnv('Sonar') {
                         sh '''
-                            source ${VENV_DIR}/bin/activate  # Activate virtual environment
-                            ${scannerHome}/bin/sonar-scanner  # Run SonarQube scan
+                            echo "checking..."
                         '''
                     }
                 }

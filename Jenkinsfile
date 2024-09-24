@@ -21,13 +21,24 @@ pipeline {
         }
         
         stage('Code Quality Check') {
-            steps {
-                sh '''
-                    #!/bin/bash
-                    export PATH=$PATH:/Users/macbook/Library/Python/3.9/bin
-                    pyflint app.py
-                    '''
+            
+            environment 
+            {
+                scannerHome = tool 'Sonar'
             }
+            steps 
+            {
+                script {
+                    withSonarQubeEnv('Sonar') {
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=<project-key> \
+                            -Dsonar.projectName=<project-name> \
+                            -Dsonar.projectVersion=<project-version> \
+                            -Dsonar.sources=. "
+                    }
+                }
+            }
+            
         }
         
         stage('Deploy') {

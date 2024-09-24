@@ -61,14 +61,7 @@ pipeline {
                 sh 'aws deploy create-deployment --application-name my-app --deployment-group my-deployment-group --s3-location bucket=my-bucket,key=flask-app.zip,bundleType=zip'
                 }
         }
-        stage('Monitoring and Alerting') {
-            steps {
-                sh 'echo "Configuring monitoring and alerting..."'
-                // Datadog Agent installation for monitoring:
-                sh 'DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=YOUR_DATADOG_API_KEY DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"'
-        
-                // Monitor CPU, Memory, Network, and other metrics
-                sh 'datadog-agent status'
+       
     }
 }
     }

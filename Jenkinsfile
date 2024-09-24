@@ -68,8 +68,8 @@ pipeline {
             steps {
                 sh '''
                     echo "Deploying to test environment..."
-                    docker build -t flask-app-test .  # Build Docker image
-                    docker run -d -p 5000:5000 flask-app-test  # Run container
+                    /usr/local/bin/docker build -t flask-app-test .  # Build Docker image
+                    /usr/local/bin/docker run -d -p 5000:5000 flask-app-test  # Run container
                 '''
             }
         }

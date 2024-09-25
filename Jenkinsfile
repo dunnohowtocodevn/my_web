@@ -1,8 +1,12 @@
 pipeline {
     agent any
-
+    
     environment {
         VENV_DIR = '.venv'  // Directory to create the virtual environment
+        S3_BUCKET = 'mybucketjenkins'              // Replace with your S3 bucket name
+        APPLICATION_NAME = 'my_app'             // AWS CodeDeploy application name
+        DEPLOYMENT_GROUP = 'deloy'     // AWS CodeDeploy deployment group name
+        REGION = 'ap-southeast-2'                         // e.g., us-east-1
     }
 
     stages {
@@ -79,8 +83,15 @@ pipeline {
             steps {
                 sh '''
                     echo "Releasing to production..."
-                    # Example: AWS CodeDeploy (adjust to your environment)
-                    aws deploy create-deployment --application-name my-app --deployment-group my-deployment-group --s3-location bucket=my-bucket,key=flask-app.zip,bundleType=zip
+                   sh """
+                        aws deploy create-deployment \
+                        --application-name $APPLICATION_NAME \
+                        --deployment-group-name $DEPLOYMENT_GROUP \
+                        --s3-location bucket=$S3_BUCKET,key=Project.zip,bundleType=zip \
+                        --region $REGION \
+                        --role-arn arn:aws:iam::your-account-id:role/CodeDeployServiceRole
+                        """
+
                 '''
             }
         }

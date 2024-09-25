@@ -88,8 +88,7 @@ pipeline {
                         --application-name $APPLICATION_NAME \
                         --deployment-group-name $DEPLOYMENT_GROUP \
                         --s3-location bucket=$S3_BUCKET,key=Project.zip,bundleType=zip \
-                        --region $REGION \
-                        --role-arn arn:aws:iam::your-account-id:role/CodeDeployServiceRole
+                        --region $REGION 
                         """
 
                 '''

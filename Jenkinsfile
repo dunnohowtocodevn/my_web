@@ -35,8 +35,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    source ${VENV_DIR}/bin/activate  # Activate virtual environment
-                    pip check  # Verify dependencies
+                    /usr/local/bin/docker build -t flask-app-test .  # Build Docker image
                 '''
             }
         }
@@ -72,7 +71,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Deploying to test environment..."
-                    /usr/local/bin/docker build -t flask-app-test .  # Build Docker image
+                    
                     /usr/local/bin/docker run -d -p 5001:5000 flask-app-test  # Run container
                 '''
             }
@@ -88,23 +87,11 @@ pipeline {
                         --deployment-group-name $DEPLOYMENT_GROUP \
                         --s3-location bucket=$S3_BUCKET,key=Project.zip,bundleType=zip \
                         --region $REGION \
-                        """
-
-                
+                        """  
             }
         }
 
-        // Monitoring and alerting setup (e.g., Datadog)
-        stage('Monitoring and Alerting') {
-            steps {
-                sh '''
-                    echo "Configuring monitoring and alerting..."
-                    # Datadog Agent setup
-                    DD_AGENT_MAJOR_VERSION=7 DD_API_KEY=YOUR_DATADOG_API_KEY DD_SITE="datadoghq.com" bash -c "$(curl -L https://s3.amazonaws.com/dd-agent/scripts/install_script.sh)"
-                    datadog-agent status  # Check agent status
-                '''
-            }
-        }
+        
     }
 
     post {

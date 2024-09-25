@@ -89,7 +89,6 @@ pipeline {
                         --deployment-group-name $DEPLOYMENT_GROUP \
                         --s3-location bucket=$S3_BUCKET,key=Project.zip,bundleType=zip \
                         --region $REGION \
-                        --role-arn arn:aws:iam::225989345527:role/deloy
                         """
 
                 '''

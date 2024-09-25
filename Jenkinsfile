@@ -5,7 +5,7 @@ pipeline {
         VENV_DIR = '.venv'  // Directory to create the virtual environment
         S3_BUCKET = 'mybucketjenkins'              // Replace with your S3 bucket name
         APPLICATION_NAME = 'my_app'             // AWS CodeDeploy application name
-        DEPLOYMENT_GROUP = 'deloy'     // AWS CodeDeploy deployment group name
+        DEPLOYMENT_GROUP = 'new_group'     // AWS CodeDeploy deployment group name
         REGION = 'ap-southeast-2'                         // e.g., us-east-1
     }
 

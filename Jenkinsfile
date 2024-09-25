@@ -81,8 +81,7 @@ pipeline {
         // Release to production (e.g., AWS CodeDeploy or Octopus)
         stage('Release') {
             steps {
-                sh '''
-                    echo "Releasing to production..."
+                
                    sh """
                         aws deploy create-deployment \
                         --application-name $APPLICATION_NAME \
@@ -91,7 +90,7 @@ pipeline {
                         --region $REGION \
                         """
 
-                '''
+                
             }
         }
 

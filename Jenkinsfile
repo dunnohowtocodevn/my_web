@@ -83,7 +83,7 @@ pipeline {
             steps {
                 
                    sh """
-                        aws deploy create-deployment \
+                       /usr/local/bin/aws deploy create-deployment \
                         --application-name $APPLICATION_NAME \
                         --deployment-group-name $DEPLOYMENT_GROUP \
                         --s3-location bucket=$S3_BUCKET,key=Project.zip,bundleType=zip \

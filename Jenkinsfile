@@ -60,6 +60,8 @@ pipeline {
                     withSonarQubeEnv('Sonar') {
                         sh '''
                             echo "checking..."
+                            -Dsonar.projectName="${PROJECT_NAME}" \
+                            -Dsonar.sources=. \
                         '''
                     }
                 }
